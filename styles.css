@@ -280,9 +280,13 @@ td:last-child { color: var(--yellow); font-family: var(--mono); font-size: .73re
 .newsletter-form legend { padding: 0 .5rem; }
 .newsletter-form .radio { display: flex; align-items: center; grid-template-columns: auto 1fr; gap: .6rem; cursor: pointer; }
 .radio input { accent-color: var(--orange); width: 18px; height: 18px; }
+.form-note { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.65; }
 .form-submit { width: 100%; }
+.form-submit:disabled { opacity: .62; cursor: wait; }
 .form-status { min-height: 1.4rem; margin: 0; color: var(--success); font-size: .82rem; }
 .form-status.is-error { color: #ff9c95; }
+.form-fallback { width: fit-content; color: var(--muted); font: 700 .62rem/1.4 var(--mono); text-decoration: underline; text-underline-offset: .25rem; }
+.form-fallback:hover, .form-fallback:focus-visible { color: var(--orange-light); }
 
 .site-footer { min-height: 230px; padding: 3rem var(--pad); display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; background: var(--bg-deep); border-top: 1px solid var(--line); }
 .footer-brand { display: flex; align-items: center; gap: 1rem; }

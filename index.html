@@ -307,23 +307,32 @@
           <div class="newsletter-meta"><span>NO SPAM</span><span>HK FANS ONLY</span><span>UNSUBSCRIBE ANYTIME</span></div>
         </div>
 
-        <form class="newsletter-form reveal" novalidate>
+        <form
+          class="newsletter-form reveal"
+          action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdpgwSvDXDsbxORJlegPN8UR9scK3d8Ys_EWWC-t-JzCE0RlA/formResponse"
+          method="post"
+          target="google-form-target"
+          novalidate
+        >
           <div class="field-row">
-            <label><span>姓名 *</span><input type="text" name="name" autocomplete="name" required placeholder="如何稱呼你？" /></label>
-            <label><span>電郵 *</span><input type="email" name="email" autocomplete="email" required placeholder="name@email.com" /></label>
+            <label><span>姓名 *</span><input type="text" name="entry.141379521" data-field="name" autocomplete="name" required placeholder="如何稱呼你？" /></label>
+            <label><span>電郵 *</span><input type="email" name="entry.274411900" data-field="email" autocomplete="email" required placeholder="name@email.com" /></label>
           </div>
           <div class="field-row">
-            <label><span>WhatsApp</span><input type="tel" name="whatsapp" autocomplete="tel" placeholder="+852" /></label>
-            <label><span>Instagram</span><input type="text" name="instagram" placeholder="@username" /></label>
+            <label><span>WhatsApp</span><input type="tel" name="entry.357495308" data-field="whatsapp" autocomplete="tel" placeholder="+852" /></label>
+            <label><span>Instagram</span><input type="text" name="entry.111642328" data-field="instagram" placeholder="@username" /></label>
           </div>
           <fieldset>
             <legend>曾經現場觀看 NBA 嗎？</legend>
-            <label class="radio"><input type="radio" name="watched" value="yes" /><span>有，希望再次前往</span></label>
-            <label class="radio"><input type="radio" name="watched" value="no" /><span>尚未到訪</span></label>
+            <label class="radio"><input type="radio" name="entry.871750097" data-field="watched" value="有，希望再次前往" /><span>有，希望再次前往</span></label>
+            <label class="radio"><input type="radio" name="entry.871750097" data-field="watched" value="尚未到訪" /><span>尚未到訪</span></label>
           </fieldset>
+          <p class="form-note">提交即表示你同意 TenTalk 使用以上資料聯絡你有關未來 NBA 旅程。此表只作意向收集，不代表已確認名額或行程。</p>
           <button class="button button-primary form-submit" type="submit">通知我下一次旅程 <span aria-hidden="true">→</span></button>
           <p class="form-status" role="status" aria-live="polite"></p>
+          <a class="form-fallback" href="https://docs.google.com/forms/d/e/1FAIpQLSdpgwSvDXDsbxORJlegPN8UR9scK3d8Ys_EWWC-t-JzCE0RlA/viewform" target="_blank" rel="noreferrer">如提交遇到問題，直接開啟 Google 表格 ↗</a>
         </form>
+        <iframe class="form-target" name="google-form-target" title="Google 表格提交結果" hidden></iframe>
       </section>
     </main>
 

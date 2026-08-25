@@ -12,4 +12,4 @@ python3 -m http.server 4173
 
 Then visit `http://127.0.0.1:4173`.
 
-The newsletter form currently provides an in-page confirmation only. Connect it to an email or form backend before collecting real submissions.
+The interest form submits to the TenTalk Google Form, with responses stored in its linked Google Sheet.
