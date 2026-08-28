@@ -40,7 +40,43 @@ const sectionObserver = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: "-30% 0px -60%", threshold: 0 });
 
-document.querySelectorAll("#map, #journey, #tips, #about").forEach((section) => sectionObserver.observe(section));
+document.querySelectorAll("#map, #all-stars, #journey, #tips, #about").forEach((section) => sectionObserver.observe(section));
+
+const scoreboard = document.querySelector(".hero-scoreboard");
+const scoreDigits = [...document.querySelectorAll("[data-score-target]")];
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const showFinalScore = () => {
+  scoreDigits.forEach((digit) => {
+    digit.textContent = digit.dataset.scoreTarget;
+  });
+  scoreboard.classList.add("scoreboard-ready");
+};
+
+if (reduceMotion) {
+  showFinalScore();
+} else {
+  window.setTimeout(() => {
+    let step = 0;
+    const timer = window.setInterval(() => {
+      step += 1;
+      scoreDigits.forEach((digit) => {
+        const target = Number(digit.dataset.scoreTarget);
+        const nextValue = Math.min(step, target);
+        if (digit.textContent === String(nextValue)) return;
+        digit.textContent = String(nextValue);
+        digit.classList.remove("is-flipping");
+        void digit.offsetWidth;
+        digit.classList.add("is-flipping");
+      });
+
+      if (step >= 9) {
+        window.clearInterval(timer);
+        scoreboard.classList.add("scoreboard-ready");
+      }
+    }, 95);
+  }, 100);
+}
 
 const arenaDetails = {
   MIA: {
