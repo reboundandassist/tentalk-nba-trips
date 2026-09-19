@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="排出2026–27 NBA東西岸排名，再為30隊分配全聯盟1,230場勝仗。" />
+  <meta name="theme-color" content="#071017" />
+  <title>2026–27 NBA預測挑戰｜TenTalk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@600&amp;family=Noto+Sans+HK:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../play.css?v=20260919" />
+  <script src="../team-data.js?v=20260919" defer></script>
+  <script src="game.js?v=20260919" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+  <header class="play-header">
+    <a class="play-brand" href="../../"><img src="../../assets/tentalk-logo.png" alt="" /><span class="brand-word">Ten<span>Talk</span> NBA</span></a>
+    <nav class="play-nav" aria-label="主要導覽"><a href="../../">NBA旅程</a><a class="nav-play" href="../" aria-current="page">互動遊戲</a><a href="../../#about">關於TenTalk</a></nav>
+  </header>
+  <main id="main" class="play-main game-main">
+    <section class="game-intro" id="intro">
+      <div><p class="eyebrow">Season 2026–27 · Community challenge</p><h1>NBA預測<span>挑戰</span></h1><p class="hook">你比TenTalk Community睇得更準嗎？</p><p>先用Level 1排出東西岸排名。完成後，你可以直接睇結果，或者接受Level 2挑戰，為30隊分配全聯盟1,230場勝仗。</p><button class="button" type="button" data-start>開始Level 1 →</button></div>
+      <aside class="intro-card"><dl><dt>Level 1</dt><dd>約2分鐘</dd><dt>Level 2</dt><dd>約5至8分鐘 · 自選</dd><dt>登入</dt><dd>毋須</dd><dt>進度</dt><dd>本機自動儲存</dd></dl><p class="legal-note">目前為前端預覽版。Community提交及公開結果尚未接駁後端；不會上載或模擬任何數據。</p></aside>
+    </section>
+
+    <section class="game-step" id="level-one" aria-labelledby="level-one-title">
+      <div class="step-heading"><span class="step-number">01</span><div><h2 id="level-one-title">排出你的東西岸排名</h2><p>由上季排名開始，將球隊拉高或拉低，排出你心目中嘅2026–27常規賽排名。手機可使用上下按鈕。</p></div></div>
+      <p class="mode-note" id="save-note" role="status">你的改動會自動儲存在這部裝置。</p>
+      <div class="conference-grid"><section class="conference-panel"><div class="conference-title"><h3>Eastern Conference</h3><span>15 teams</span></div><ol class="ranking-list" id="east-list" aria-label="東岸排名"></ol></section><section class="conference-panel"><div class="conference-title"><h3>Western Conference</h3><span>15 teams</span></div><ol class="ranking-list" id="west-list" aria-label="西岸排名"></ol></section></div>
+      <div class="review-bar"><p id="level-one-status" role="status">兩個分岸各有15隊，可以開始調整。</p><button class="button" type="button" id="review-ranking">確認排名 →</button></div>
+      <div class="review-panel" id="ranking-review" hidden><h3>最後檢查</h3><p>提交後仍可刻意重新開始，但不會靜默覆蓋已完成結果。</p><div class="review-columns"><div><strong>東岸</strong><ol id="east-review"></ol></div><div><strong>西岸</strong><ol id="west-review"></ol></div></div><div class="review-actions"><button class="button button-outline" type="button" id="back-to-ranking">再調整</button><button class="button" type="button" id="submit-level-one">提交Level 1</button></div></div>
+    </section>
+
+    <section class="game-step" id="level-one-result" hidden aria-labelledby="level-one-result-title"><div class="results-panel"><div class="result-head"><div><p class="eyebrow">Level 1 complete</p><h2 id="level-one-result-title">你 vs TenTalk Community</h2></div><span class="result-id" data-result-id></span></div><p class="community-empty"><strong>Community結果收集中</strong><br />目前未有達到顯示門檻的真實提交；以下只顯示你的排名，不會使用模擬數據。</p><div class="result-tables" id="level-one-tables"></div><div class="observation-grid" id="level-one-observations"></div><div class="level-two-invite"><div><h3>仲未夠喉？</h3><p>挑戰預測全NBA 30隊勝場，將全聯盟1,230場勝仗分配俾30支球隊。</p></div><button class="button" type="button" id="start-level-two">接受Level 2挑戰 →</button></div><div class="share-row" data-share-row></div><p class="share-status" role="status"></p></div></section>
+
+    <section class="game-step" id="level-two" hidden aria-labelledby="level-two-title">
+      <div class="step-heading"><span class="step-number">02</span><div><h2 id="level-two-title">預測30隊勝場</h2><p>每隊由上季勝場開始。今次唔可以人人都50勝：最後全聯盟總數必須剛好係1,230。</p></div></div>
+      <div class="sticky-tools"><div class="total-meter" id="total-meter" aria-live="polite"><strong><span id="wins-total">1,230</span> / 1,230</strong><span id="wins-balance">✓ 完美平衡，可以提交！</span></div><div class="filter-group" aria-label="篩選球隊"><button type="button" data-filter="All" aria-pressed="true">全部</button><button type="button" data-filter="East" aria-pressed="false">東岸</button><button type="button" data-filter="West" aria-pressed="false">西岸</button></div><button class="button button-outline button-small" type="button" id="suggest-balance">幫我處理最後幾場</button></div>
+      <p class="mode-note"><span id="reviewed-count">0 / 30</span> 隊已調整或確認。只調整你認為會明顯升跌嘅球隊，其餘可保留上季勝場。</p>
+      <div class="balance-suggestions" id="balance-suggestions" hidden></div>
+      <div class="win-list" id="win-list"></div>
+      <div class="level-two-actions"><button class="button button-outline" type="button" id="reset-wins">回復全部上季勝場</button><button class="button" type="button" id="submit-level-two">提交Level 2</button></div>
+    </section>
+
+    <section class="game-step" id="level-two-result" hidden aria-labelledby="level-two-result-title"><div class="results-panel"><div class="result-head"><div><p class="eyebrow">1,230 wins allocated</p><h2 id="level-two-result-title">你嘅30隊勝場預測</h2></div><span class="result-id" data-result-id></span></div><p class="community-empty"><strong>Community平均收集中</strong><br />後端未接駁，因此只顯示你的本機結果。</p><div class="observation-grid" id="level-two-observations"></div><div class="result-tables" id="level-two-tables"></div><div class="share-row" data-share-row></div><p class="share-status" role="status"></p><button class="button button-outline" type="button" id="restart-game">重新開始</button></div></section>
+  </main>
+  <footer class="play-footer"><span>TenTalk NBA · Prediction game v1.0.0</span><span>資料基準：2025–26常規賽最終排名</span></footer>
+</body>
+</html>
