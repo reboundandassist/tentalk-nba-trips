@@ -15,7 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&amp;family=IBM+Plex+Mono:wght@500;600;700&amp;family=Noto+Sans+HK:wght@400;500;600;700&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260918" />
+    <link rel="stylesheet" href="styles.css?v=20260919" />
     <script src="calculator.js?v=20260918" defer></script>
     <script src="form-config.js?v=20260918" defer></script>
     <script src="script.js?v=20260918" defer></script>
@@ -31,28 +31,22 @@
       </a>
 
       <nav class="desktop-nav" aria-label="主要導覽">
-        <a href="#map">場館地圖</a>
-        <a href="#all-stars">All-Star Wall</a>
-        <a href="#journey">遠征紀錄</a>
-        <a href="#calculator">旅程計數機</a>
-        <a href="#tips">觀賽攻略</a>
-        <a href="#about">關於我們</a>
+        <a href="#top" aria-current="page">NBA旅程</a>
+        <a href="play/">互動遊戲</a>
+        <a href="#about">關於TenTalk</a>
       </nav>
 
-      <a class="header-cta" href="#newsletter">未來旅程資訊</a>
+      <a class="header-cta" href="play/2026-27-predictions/">2026–27 預測挑戰</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
         <span class="sr-only">開啟選單</span>
         <span></span><span></span>
       </button>
 
       <nav class="mobile-menu" id="mobile-menu" aria-label="手機導覽" hidden>
-        <a href="#map">場館地圖</a>
-        <a href="#all-stars">現場看過的 All-Star</a>
-        <a href="#journey">遠征紀錄</a>
-        <a href="#calculator">旅程計數機</a>
-        <a href="#tips">觀賽攻略</a>
-        <a href="#about">關於我們</a>
-        <a class="mobile-menu-cta" href="#newsletter">未來旅程資訊</a>
+        <a href="#top" aria-current="page">NBA旅程</a>
+        <a href="play/">互動遊戲</a>
+        <a href="#about">關於TenTalk</a>
+        <a class="mobile-menu-cta" href="play/2026-27-predictions/">開始2026–27預測挑戰</a>
       </nav>
     </header>
 
@@ -103,6 +97,16 @@
 
         <div class="hero-scroll" aria-hidden="true"><span></span> SCROLL TO EXPLORE</div>
       </section>
+
+      <aside class="prediction-promo" aria-labelledby="prediction-promo-title">
+        <div class="prediction-promo-mark" aria-hidden="true"><span>26</span><i></i><span>27</span></div>
+        <div class="prediction-promo-copy">
+          <p class="eyebrow">TENTALK NBA · PLAY</p>
+          <h2 id="prediction-promo-title">新一季，你睇好邊隊？</h2>
+          <p>參加TenTalk 2026–27 NBA預測挑戰，先排出東西岸排名，再挑戰將全聯盟1,230場勝仗分配俾30支球隊。</p>
+        </div>
+        <a class="button button-primary" href="play/2026-27-predictions/">參加NBA預測挑戰 <span aria-hidden="true">→</span></a>
+      </aside>
 
       <section class="section map-section" id="map" aria-labelledby="map-title">
         <div class="section-heading reveal">

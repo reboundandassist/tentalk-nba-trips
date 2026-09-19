@@ -1,5 +1,14 @@
 # September 2026 enhancement
 
+## 2026-09-19 — TenTalk NBA Play architecture
+
+- Reframed navigation around NBA旅程, 互動遊戲 and 關於TenTalk while preserving the Trips homepage route.
+- Added a homepage prediction banner, reusable `/play/` games hub and stable `/play/2026-27-predictions/` route.
+- Added accessible Level 1 rankings, final review, local autosave and anonymous local result IDs.
+- Added optional Level 2 win predictions, synchronized controls, filters, the 1,230-win constraint and confirmation-based balancing suggestions.
+- Added factual result observations, native sharing, WhatsApp, Facebook, Threads, copy-link and downloadable result-card controls.
+- Community data remains explicitly in a collecting state until an approved backend exists; no synthetic submissions are shown.
+
 - Preserved the opening design, arena map, 2023–2027 chapters, guide and About text; About now follows future-interest registration.
 - Retained all 36 existing headshots, names and badges. Featured Four remain visible; remaining 32 collapse by default, with keyboard/touch button and responsive 8/4/3-column grid. Removed visible Tier 1 ranking label.
 - Added exactly three specified quiz scenarios, original result copy, correct B-answer thresholds, restart and entertainment disclaimer.

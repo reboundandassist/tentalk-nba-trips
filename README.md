@@ -1,6 +1,16 @@
-# TenTalk
+# TenTalk NBA
 
-A responsive one-page website for TenTalk's mission to visit all 30 NBA arenas.
+A dependency-free static website for TenTalk's NBA trips, tools and interactive games.
+
+## Routes
+
+- `/` — existing NBA Trips experience and the prediction-game entry point.
+- `/play/` — reusable interactive-games hub.
+- `/play/2026-27-predictions/` — 2026–27 prediction challenge.
+
+The prediction challenge includes accessible conference ranking controls, local autosave, Level 1 results, a 30-team win allocator constrained to 1,230 wins, opt-in balancing suggestions, result observations and sharing tools. It uses verified 2025–26 final regular-season standings as its baseline.
+
+This release is a frontend-only prototype. It deliberately does not fabricate Community data. Anonymous submissions, cross-device result URLs and Community aggregates require a separately approved backend with server-side validation, rate limiting and privacy review.
 
 ## Run locally
 

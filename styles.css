@@ -6,6 +6,50 @@
   font-display: swap;
 }
 
+/* TenTalk NBA play launch */
+.prediction-promo {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 2rem auto 0;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 3rem);
+  color: var(--cream, #f3eee4);
+  background: linear-gradient(125deg, #101e28, #142630);
+  border: 1px solid rgba(241, 201, 108, 0.36);
+  box-shadow: 0 20px 70px rgba(4, 10, 14, 0.28);
+}
+
+.prediction-promo-mark {
+  width: 88px;
+  height: 88px;
+  display: grid;
+  place-content: center;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(241, 201, 108, 0.5);
+  border-radius: 50%;
+  color: #f1c96c;
+  font: 800 1.15rem "Barlow Condensed", sans-serif;
+}
+
+.prediction-promo-mark i { width: 1px; height: 34px; background: #ef4c3e; transform: rotate(22deg); }
+.prediction-promo h2 { margin: 0.15rem 0 0.45rem; font: 800 clamp(2rem, 4vw, 3.5rem)/0.95 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.prediction-promo p:not(.eyebrow) { max-width: 670px; margin: 0; color: #bec7ca; }
+.prediction-promo .button { white-space: nowrap; }
+
+@media (max-width: 820px) {
+  .prediction-promo { grid-template-columns: auto 1fr; width: min(100% - 1.5rem, 1180px); }
+  .prediction-promo .button { grid-column: 1 / -1; justify-self: stretch; }
+}
+
+@media (max-width: 520px) {
+  .prediction-promo { grid-template-columns: 1fr; }
+  .prediction-promo-mark { width: 68px; height: 68px; }
+}
+
 :root {
   color-scheme: dark;
   --bg: #13202b;
