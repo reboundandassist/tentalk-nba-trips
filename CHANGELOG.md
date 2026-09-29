@@ -1,5 +1,13 @@
 # September 2026 enhancement
 
+## 2026-09-25 — live survey and ranked Level 2
+
+- Added an anonymous, idempotent Google Apps Script survey backend with server-side validation, private raw rows, public aggregate counts and Community averages.
+- Added a live public survey count; Community averages appear from the first valid submission.
+- Split Level 2 back into East and West in the exact Level 1 order selected by each user.
+- Level 2 defaults preserve 1,230 wins while following that order, and every edit enforces non-increasing wins within each conference.
+- Added tests for the Spurs/Thunder 59-win constraint, ranked defaults, 1,230 total and balance suggestions.
+
 ## 2026-09-19 — TenTalk NBA Play architecture
 
 - Reframed navigation around NBA旅程, 互動遊戲 and 關於TenTalk while preserving the Trips homepage route.
