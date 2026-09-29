@@ -9,7 +9,7 @@
   const COMMUNITY_API = String(window.TENTALK_COMMUNITY_API || "").trim();
   let draggedId = null;
   let pendingSuggestion = null;
-  let community = { counts: { survey: 0, level1: 0, level2: 0 }, averageRank: {}, averageWins: {} };
+  let community = window.TENTALK_COMMUNITY_SEED || { counts: { survey: 0, level1: 0, level2: 0 }, averageRank: {}, averageWins: {} };
 
   const initialRanking = (conference) => teams.filter((team) => team.conference === conference).sort((a, b) => a.rank - b.rank).map((team) => team.id);
   const defaultEast = initialRanking("East");
