@@ -3,6 +3,18 @@
 
   const clampWin = (value) => Math.max(0, Math.min(82, Math.round(Number(value))));
 
+  function rankComparison(userRank, communityRank) {
+    if (userRank == null || communityRank == null || userRank === "" || communityRank === "") return null;
+    const user = Number(userRank);
+    const community = Number(communityRank);
+    if (!Number.isFinite(user) || !Number.isFinite(community)) return null;
+    const gap = Math.abs(user - community);
+    if (gap <= 0.75) return { gap, key: "very-close", label: "非常接近" };
+    if (gap <= 2) return { gap, key: "close", label: "接近" };
+    if (gap <= 4) return { gap, key: "far", label: "有分歧" };
+    return { gap, key: "very-far", label: "最大分歧" };
+  }
+
   function rankingSignature(east, west) {
     return `${east.join(",")}|${west.join(",")}`;
   }
@@ -101,6 +113,7 @@
     createRankedWins,
     isRankingConsistent,
     maxForTeam,
+    rankComparison,
     rankingSignature,
   };
 })();

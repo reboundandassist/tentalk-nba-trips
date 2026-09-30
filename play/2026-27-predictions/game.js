@@ -43,7 +43,7 @@
     item.className = "team-rank";
     item.draggable = true;
     item.dataset.id = team.id;
-    item.innerHTML = `<span class="rank-no">${index + 1}</span><img class="team-logo" src="${logo(team)}" alt="${escapeHtml(team.name)}標誌" width="38" height="38"><span class="team-name"><strong>${escapeHtml(team.name)}</strong><small>上季：${conference === "East" ? "東" : "西"}岸第${team.rank}｜${team.wins}勝</small></span><span class="rank-actions"><button type="button" data-move="up" aria-label="將${escapeHtml(team.name)}向上移" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="down" aria-label="將${escapeHtml(team.name)}向下移" ${index === 14 ? "disabled" : ""}>↓</button><button type="button" class="drag-handle" aria-label="拖曳${escapeHtml(team.name)}">⠿</button></span>`;
+    item.innerHTML = `<span class="rank-no">${index + 1}</span><img class="team-logo" src="${logo(team)}" alt="${escapeHtml(team.name)}標誌" width="38" height="38"><span class="team-name"><strong>${escapeHtml(team.name)}</strong><small>上季：${conference === "East" ? "東" : "西"}岸第${team.rank}｜${team.wins}勝</small></span><span class="rank-actions"><button type="button" data-move="up" aria-label="將${escapeHtml(team.name)}向上移" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-move="down" aria-label="將${escapeHtml(team.name)}向下移" ${index === 14 ? "disabled" : ""}>↓</button><button type="button" class="drag-handle" aria-label="按住並拖曳${escapeHtml(team.name)}"><span aria-hidden="true">⠿</span><small>拖曳</small></button></span>`;
     return item;
   }
 
@@ -67,6 +67,50 @@
   function bindRankingList(conference) {
     const key = conference.toLowerCase();
     const list = q(`#${key}-list`);
+    let pointerDrag = null;
+    let autoScrollFrame = 0;
+
+    const renumberRows = () => qa(".team-rank", list).forEach((row, index) => { q(".rank-no", row).textContent = String(index + 1); });
+    const placeDraggedRow = (clientX, clientY) => {
+      if (!pointerDrag) return;
+      const target = document.elementFromPoint(clientX, clientY)?.closest(".team-rank");
+      if (!target || target === pointerDrag.item || !list.contains(target)) return;
+      const targetRect = target.getBoundingClientRect();
+      if (clientY < targetRect.top + targetRect.height / 2) list.insertBefore(pointerDrag.item, target);
+      else target.after(pointerDrag.item);
+      renumberRows();
+    };
+    const runAutoScroll = () => {
+      if (!pointerDrag) return;
+      const edge = Math.min(110, window.innerHeight * 0.18);
+      const y = pointerDrag.clientY;
+      const speed = y < edge ? -Math.ceil((edge - y) / 8) : y > window.innerHeight - edge ? Math.ceil((y - (window.innerHeight - edge)) / 8) : 0;
+      if (speed) {
+        window.scrollBy(0, Math.max(-18, Math.min(18, speed)));
+        placeDraggedRow(pointerDrag.clientX, pointerDrag.clientY);
+      }
+      autoScrollFrame = requestAnimationFrame(runAutoScroll);
+    };
+    const finishPointerDrag = (commit) => {
+      if (!pointerDrag) return;
+      const { handle, item, ghost, pointerId, originalIds } = pointerDrag;
+      cancelAnimationFrame(autoScrollFrame);
+      if (handle.hasPointerCapture?.(pointerId)) handle.releasePointerCapture(pointerId);
+      ghost.remove();
+      item.classList.remove("is-touch-dragging");
+      document.body.classList.remove("is-sorting-rank");
+      if (commit) {
+        state[key] = qa(".team-rank", list).map((row) => row.dataset.id);
+        const newPosition = state[key].indexOf(item.dataset.id) + 1;
+        save();
+        renderRanking(conference);
+        q("#level-one-status").textContent = `${byId[item.dataset.id].name} 已移到${conference === "East" ? "東岸" : "西岸"}第${newPosition}位。`;
+      } else {
+        state[key] = originalIds;
+        renderRanking(conference);
+      }
+      pointerDrag = null;
+    };
     list.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-move]");
       if (!button) return;
@@ -76,6 +120,35 @@
     list.addEventListener("dragend", () => { draggedId = null; qa(".team-rank", list).forEach((item) => item.classList.remove("is-dragging", "drag-over")); });
     list.addEventListener("dragover", (event) => { event.preventDefault(); const item = event.target.closest("li"); qa(".drag-over", list).forEach((row) => row.classList.remove("drag-over")); item?.classList.add("drag-over"); });
     list.addEventListener("drop", (event) => { event.preventDefault(); const target = event.target.closest("li"); if (!target || !draggedId || draggedId === target.dataset.id) return; const from = state[key].indexOf(draggedId); const to = state[key].indexOf(target.dataset.id); state[key].splice(from, 1); state[key].splice(to, 0, draggedId); save(); renderRanking(conference); });
+    list.addEventListener("pointerdown", (event) => {
+      const handle = event.target.closest(".drag-handle");
+      if (!handle || !event.isPrimary || event.button !== 0) return;
+      const item = handle.closest(".team-rank");
+      const rect = item.getBoundingClientRect();
+      const ghost = item.cloneNode(true);
+      event.preventDefault();
+      handle.setPointerCapture?.(event.pointerId);
+      ghost.className = "touch-drag-ghost";
+      ghost.setAttribute("aria-hidden", "true");
+      ghost.style.width = `${rect.width}px`;
+      ghost.style.left = `${rect.left}px`;
+      ghost.style.top = `${rect.top}px`;
+      document.body.append(ghost);
+      item.classList.add("is-touch-dragging");
+      document.body.classList.add("is-sorting-rank");
+      pointerDrag = { item, handle, ghost, pointerId: event.pointerId, offsetY: event.clientY - rect.top, clientX: event.clientX, clientY: event.clientY, originalIds: state[key].slice() };
+      autoScrollFrame = requestAnimationFrame(runAutoScroll);
+    });
+    list.addEventListener("pointermove", (event) => {
+      if (!pointerDrag || event.pointerId !== pointerDrag.pointerId) return;
+      event.preventDefault();
+      pointerDrag.clientX = event.clientX;
+      pointerDrag.clientY = event.clientY;
+      pointerDrag.ghost.style.top = `${event.clientY - pointerDrag.offsetY}px`;
+      placeDraggedRow(event.clientX, event.clientY);
+    });
+    list.addEventListener("pointerup", (event) => { if (pointerDrag?.pointerId === event.pointerId) finishPointerDrag(true); });
+    list.addEventListener("pointercancel", (event) => { if (pointerDrag?.pointerId === event.pointerId) finishPointerDrag(false); });
   }
 
   const generateId = () => `TT-${Date.now().toString(36).toUpperCase()}-${crypto.getRandomValues(new Uint16Array(1))[0].toString(36).toUpperCase()}`;
@@ -144,7 +217,11 @@
   }
 
   const communityRank = (id) => community.averageRank?.[id];
-  const rankingTable = (conference, ids) => `<table class="result-table"><caption>${conference === "East" ? "東岸" : "西岸"}</caption><thead><tr><th scope="col">排名</th><th scope="col">你的預測</th><th scope="col">Community平均</th></tr></thead><tbody>${ids.map((id, index) => `<tr><th scope="row">${index + 1}</th><td>${escapeHtml(byId[id].name)}</td><td>${communityRank(id) == null ? "收集中" : `${Number(communityRank(id)).toFixed(2)}位`}</td></tr>`).join("")}</tbody></table>`;
+  const rankingTable = (conference, ids) => `<table class="result-table ranking-result-table"><caption>${conference === "East" ? "東岸" : "西岸"}</caption><thead><tr><th scope="col">排名</th><th scope="col">你的預測</th><th scope="col">Community比較</th></tr></thead><tbody>${ids.map((id, index) => {
+    const average = communityRank(id);
+    const comparison = average == null ? null : core.rankComparison(index + 1, average);
+    return `<tr${comparison ? ` class="rank-match rank-match--${comparison.key}"` : ""}><th scope="row">${index + 1}</th><td>${escapeHtml(byId[id].name)}</td><td>${comparison ? `<span class="rank-average">${Number(average).toFixed(2)}位</span><strong class="rank-match-label">${comparison.label}</strong><small>相差${comparison.gap.toFixed(2)}位</small>` : "收集中"}</td></tr>`;
+  }).join("")}</tbody></table>`;
 
   function renderLevelOneResult() {
     q("#level-one-tables").innerHTML = rankingTable("East", state.east) + rankingTable("West", state.west);

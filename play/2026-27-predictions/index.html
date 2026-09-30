@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&amp;family=IBM+Plex+Mono:wght@600&amp;family=Noto+Sans+HK:wght@400;500;700&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../play.css?v=20260929" />
+  <link rel="stylesheet" href="../play.css?v=20260930" />
   <script src="../team-data.js?v=20260919" defer></script>
-  <script src="prediction-core.js?v=20260929" defer></script>
+  <script src="prediction-core.js?v=20260930" defer></script>
   <script src="community-config.js?v=20260929" defer></script>
-  <script src="game.js?v=20260929" defer></script>
+  <script src="game.js?v=20260930" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要內容</a>
@@ -28,14 +28,14 @@
     </section>
 
     <section class="game-step" id="level-one" aria-labelledby="level-one-title">
-      <div class="step-heading"><span class="step-number">01</span><div><h2 id="level-one-title">排出你的東西岸排名</h2><p>由上季排名開始，將球隊拉高或拉低，排出你心目中嘅2026–27常規賽排名。手機可使用上下按鈕。</p></div></div>
+      <div class="step-heading"><span class="step-number">01</span><div><h2 id="level-one-title">排出你的東西岸排名</h2><p>由上季排名開始，將球隊拉高或拉低，排出你心目中嘅2026–27常規賽排名。手機按住「拖曳」便可用一隻手指移動球隊。</p></div></div>
       <p class="mode-note" id="save-note" role="status">你的改動會自動儲存在這部裝置。</p>
       <div class="conference-grid"><section class="conference-panel"><div class="conference-title"><h3>Eastern Conference</h3><span>15 teams</span></div><ol class="ranking-list" id="east-list" aria-label="東岸排名"></ol></section><section class="conference-panel"><div class="conference-title"><h3>Western Conference</h3><span>15 teams</span></div><ol class="ranking-list" id="west-list" aria-label="西岸排名"></ol></section></div>
       <div class="review-bar"><p id="level-one-status" role="status">兩個分岸各有15隊，可以開始調整。</p><button class="button" type="button" id="review-ranking">確認排名 →</button></div>
       <div class="review-panel" id="ranking-review" hidden><h3>最後檢查</h3><p>提交後仍可刻意重新開始，但不會靜默覆蓋已完成結果。</p><div class="review-columns"><div><strong>東岸</strong><ol id="east-review"></ol></div><div><strong>西岸</strong><ol id="west-review"></ol></div></div><div class="review-actions"><button class="button button-outline" type="button" id="back-to-ranking">再調整</button><button class="button" type="button" id="submit-level-one">提交Level 1</button></div></div>
     </section>
 
-    <section class="game-step" id="level-one-result" hidden aria-labelledby="level-one-result-title"><div class="results-panel"><div class="result-head"><div><p class="eyebrow">Level 1 complete</p><h2 id="level-one-result-title">你 vs TenTalk Community</h2></div><span class="result-id" data-result-id></span></div><p class="community-empty" id="level-one-community-status" role="status"><strong>正在讀取Community結果</strong><br />Community平均會由第一份真實提交開始顯示。</p><div class="result-tables" id="level-one-tables"></div><div class="observation-grid" id="level-one-observations"></div><div class="level-two-invite"><div><h3>仲未夠喉？</h3><p>挑戰預測全NBA 30隊勝場，將全聯盟1,230場勝仗分配俾30支球隊。</p></div><button class="button" type="button" id="start-level-two">接受Level 2挑戰 →</button></div><div class="share-row" data-share-row></div><p class="share-status" role="status"></p></div></section>
+    <section class="game-step" id="level-one-result" hidden aria-labelledby="level-one-result-title"><div class="results-panel"><div class="result-head"><div><p class="eyebrow">Level 1 complete</p><h2 id="level-one-result-title">你 vs TenTalk Community</h2></div><span class="result-id" data-result-id></span></div><p class="community-empty" id="level-one-community-status" role="status"><strong>正在讀取Community結果</strong><br />Community平均會由第一份真實提交開始顯示。</p><div class="rank-legend" aria-label="你與Community排名差距顏色說明"><span>顏色代表排名差距</span><strong class="rank-legend--very-close">非常接近</strong><strong class="rank-legend--close">接近</strong><strong class="rank-legend--far">有分歧</strong><strong class="rank-legend--very-far">最大分歧</strong></div><div class="result-tables" id="level-one-tables"></div><div class="observation-grid" id="level-one-observations"></div><div class="level-two-invite"><div><h3>仲未夠喉？</h3><p>挑戰預測全NBA 30隊勝場，將全聯盟1,230場勝仗分配俾30支球隊。</p></div><button class="button" type="button" id="start-level-two">接受Level 2挑戰 →</button></div><div class="share-row" data-share-row></div><p class="share-status" role="status"></p></div></section>
 
     <section class="game-step" id="level-two" hidden aria-labelledby="level-two-title">
       <div class="step-heading"><span class="step-number">02</span><div><h2 id="level-two-title">按你嘅排名預測勝場</h2><p>東西岸次序沿用你的Level 1。低排名球隊可以同前一隊勝場相同或較低，但不能更高；全聯盟總數仍須剛好1,230。</p></div></div>
