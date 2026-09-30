@@ -47,3 +47,11 @@ test('balance suggestions restore 1,230 without breaking either conference order
   assert.equal(core.isRankingConsistent(suggestion.wins, east), true);
   assert.equal(core.isRankingConsistent(suggestion.wins, west), true);
 });
+
+test('Level 1 community gaps map to four clear comparison bands', () => {
+  assert.deepEqual({ ...core.rankComparison(1, 1.55) }, { gap: 0.55, key: 'very-close', label: '非常接近' });
+  assert.equal(core.rankComparison(3, 1.55).key, 'close');
+  assert.equal(core.rankComparison(5, 1.55).key, 'far');
+  assert.equal(core.rankComparison(6, 1.55).key, 'very-far');
+  assert.equal(core.rankComparison(1, null), null);
+});
